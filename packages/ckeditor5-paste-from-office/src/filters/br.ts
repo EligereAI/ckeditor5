@@ -57,7 +57,7 @@ export default function transformBlockBrsToParagraphs(
 		if ( element.hasClass( 'Apple-interchange-newline' ) ) {
 			writer.remove( element );
 		} else {
-			writer.replace( element, writer.createElement( 'p' ) );
+			writer.replace( element, writer.createElement( 'p', { style: 'margin: 0' } ) );
 		}
 	}
 }

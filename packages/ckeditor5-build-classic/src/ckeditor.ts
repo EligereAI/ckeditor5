@@ -26,6 +26,11 @@ import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 
+// <--- ADDED Plugin
+import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
+import { Font } from '@ckeditor/ckeditor5-font';
+import { GeneralHtmlSupport } from '@ckeditor/ckeditor5-html-support';
+
 export default class ClassicEditor extends ClassicEditorBase {
 	public static override builtinPlugins = [
 		Essentials,
@@ -53,17 +58,19 @@ export default class ClassicEditor extends ClassicEditorBase {
 		PictureEditing,
 		Table,
 		TableToolbar,
-		TextTransformation
+		TextTransformation,
+		HorizontalLine, Font,
+		GeneralHtmlSupport
 	];
 
 	public static override defaultConfig = {
 		toolbar: {
 			items: [
-				'undo', 'redo',
 				'|', 'heading',
+				'|', 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
 				'|', 'bold', 'italic',
-				'|', 'link', 'uploadImage', 'insertTable', 'blockQuote', 'mediaEmbed',
-				'|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+				'|', 'bulletedList', 'numberedList', 'outdent', 'indent',
+				'|', 'link', 'uploadImage', 'horizontalLine', 'undo', 'redo', 'insertTable', 'blockQuote', 'mediaEmbed'
 			]
 		},
 		image: {
@@ -81,6 +88,14 @@ export default class ClassicEditor extends ClassicEditorBase {
 				'tableColumn',
 				'tableRow',
 				'mergeTableCells'
+			]
+		},
+		htmlSupport: {
+			allow: [
+				{
+					name: 'p',
+					styles: true as any
+				}
 			]
 		},
 		// This value must be kept in sync with the language defined in webpack.config.js.
