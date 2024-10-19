@@ -30,6 +30,7 @@ import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 import { Font } from '@ckeditor/ckeditor5-font';
 import { GeneralHtmlSupport } from '@ckeditor/ckeditor5-html-support';
+import { LineHeight } from '@rickx/ckeditor5-line-height';
 
 export default class ClassicEditor extends ClassicEditorBase {
 	public static override builtinPlugins = [
@@ -60,7 +61,8 @@ export default class ClassicEditor extends ClassicEditorBase {
 		TableToolbar,
 		TextTransformation,
 		HorizontalLine, Font,
-		GeneralHtmlSupport
+		GeneralHtmlSupport,
+		LineHeight
 	];
 
 	public static override defaultConfig = {
@@ -70,7 +72,7 @@ export default class ClassicEditor extends ClassicEditorBase {
 				'|', 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
 				'|', 'bold', 'italic',
 				'|', 'bulletedList', 'numberedList', 'outdent', 'indent',
-				'|', 'link', 'uploadImage', 'horizontalLine', 'undo', 'redo', 'insertTable', 'blockQuote', 'mediaEmbed'
+				'|', 'link', 'uploadImage', 'horizontalLine', 'undo', 'redo', 'insertTable', 'blockQuote', 'mediaEmbed', 'lineHeight'
 			]
 		},
 		image: {
@@ -93,12 +95,47 @@ export default class ClassicEditor extends ClassicEditorBase {
 		htmlSupport: {
 			allow: [
 				{
+					name: 'div',
+					styles: true as any
+				},
+				{
 					name: 'p',
+					styles: true as any
+				},
+				{
+					name: 'span',
+					styles: true as any
+				},
+				{
+					name: 'ul',
+					styles: true as any
+				},
+				{
+					name: 'ol',
+					styles: true as any
+				},
+				{
+					name: 'li',
 					styles: true as any
 				}
 			]
 		},
 		// This value must be kept in sync with the language defined in webpack.config.js.
-		language: 'en'
+		language: 'en',
+		lineHeight: {
+			// specify your otions in the lineHeight config object.
+			// Default values are ['default', 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 2, 2.5]
+			options: [
+				'default',
+				'10px',
+				2,
+				'150%',
+				'8em',
+				{
+					title: 'Custom Title',
+					model: '48px',
+				},
+			],
+		}
 	};
 }

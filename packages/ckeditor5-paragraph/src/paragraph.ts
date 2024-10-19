@@ -45,7 +45,7 @@ export default class Paragraph extends Plugin {
 		// Schema.
 		model.schema.register( 'paragraph', { inheritAllFrom: '$block' } );
 
-		editor.conversion.elementToElement( { model: 'paragraph', view: 'p' } );
+		editor.conversion.elementToElement( { model: 'paragraph', view: 'div' } );
 
 		// Conversion for paragraph-like elements which has not been converted by any plugin.
 		editor.conversion.for( 'upcast' ).elementToElement( {
